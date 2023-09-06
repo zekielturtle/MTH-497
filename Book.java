@@ -26,6 +26,10 @@ public class Book {
         return author;
     }
 
+    public int getSize(){
+        return size;
+    }
+
     private void calcSize() {
         int s;
         //code to calculate the size
