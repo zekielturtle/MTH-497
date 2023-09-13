@@ -6,7 +6,7 @@ public class Book implements Comparable<Book> {
     private String author;
     private int pages;
     private int size; //in cm
-    private String id;
+    private int id;
     //maybe a bool isSet or something with other books in the set?
 
     public Book(){
@@ -17,7 +17,7 @@ public class Book implements Comparable<Book> {
         id = "";
     }
 
-    public Book(String title, String author, String callNumber, int pages, String id){
+    public Book(String title, String author, String callNumber, int pages, int id){
         this.title = title;
         this.author = author;
         this.callNumber = callNumber;
@@ -26,7 +26,7 @@ public class Book implements Comparable<Book> {
         calcSize();
     }
 
-    public Book(String title, String author, String callNumber, String id){
+    public Book(String title, String author, String callNumber, int id){
         this.title = title;
         this.author = author;
         this.callNumber = callNumber;
@@ -72,11 +72,11 @@ public class Book implements Comparable<Book> {
         return 20; //placeholder value for now
     }
 
-    public String getId(){
+    public int getId(){
         return id;
     }
 
-    public void setId(String id){
+    public void setId(int id){
         this.id = id;
     }
 

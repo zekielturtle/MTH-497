@@ -8,18 +8,22 @@ public class Main {
     try(Scanner scan = new Scanner(new FileInputStream("sample.tsv"))){
     scan.useDelimiter("\t");
     while (scan.hasNext()){
-        String id = scan.next();
+        int id = scan.nextInt();
+        System.out.println("id: " + id);
         String title = scan.next();
+        System.out.println("title: " + title);
         String author = scan.next();
+        System.out.println("author: " + author);
         String e = scan.next();
         String pub = scan.next();
         String vol = scan.next();
         int pages = scan.nextInt();
+        System.out.println("pages: " + pages);
         String call = scan.next();
-        Book book = new Book(title, author, call, pages, id);
+        /*Book book = new Book(title, author, call, pages, id);
         books.add(book);
         System.out.println(book.getTitle());
-        System.out.println(book.getCallNumber());
+        System.out.println(book.getCallNumber());*/
 
     }
     //some sort of SLL of books to keep them in order
