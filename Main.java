@@ -51,6 +51,7 @@ public class Main {
     }
     // kw trial 
     int currSize = 0;
+ 
     Shelf currShelf = new Shelf();
     ArrayList<Shelf> shelves = new ArrayList<>();
     for (Book b : books){
