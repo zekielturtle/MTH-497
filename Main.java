@@ -41,8 +41,9 @@ public class Main {
             books.add(book);
             System.out.println("book.getTitle(): " + book.getTitle());
             System.out.println("book.getCallNumber(): " + book.getCallNumber());
-            }
-    }
+            scan.close();
+            } 
+    } 
     //some sort of SLL of books to keep them in order
     //prompt user to enter # and size of shelves
     //randomly split books to shelves
