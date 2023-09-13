@@ -14,7 +14,7 @@ public class Book implements Comparable<Book> {
         author = "";
         callNumber = "";
         pages = 0;
-        id = "";
+        id = 0;
     }
 
     public Book(String title, String author, String callNumber, int pages, int id){
