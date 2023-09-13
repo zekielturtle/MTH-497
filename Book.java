@@ -6,10 +6,18 @@ public class Book implements Comparable<Book> {
     private String author;
     private int pages;
     private int size; //in cm
-    private int id;
+    private String id;
     //maybe a bool isSet or something with other books in the set?
 
-    public Book(String title, String author, String callNumber, int pages, int id){
+    public Book(){
+        title = "";
+        author = "";
+        callNumber = "";
+        pages = 0;
+        id = "";
+    }
+
+    public Book(String title, String author, String callNumber, int pages, String id){
         this.title = title;
         this.author = author;
         this.callNumber = callNumber;
@@ -18,7 +26,7 @@ public class Book implements Comparable<Book> {
         calcSize();
     }
 
-    public Book(String title, String author, String callNumber, int id){
+    public Book(String title, String author, String callNumber, String id){
         this.title = title;
         this.author = author;
         this.callNumber = callNumber;
@@ -64,16 +72,16 @@ public class Book implements Comparable<Book> {
         return 20; //placeholder value for now
     }
 
-    public int getId(){
+    public String getId(){
         return id;
     }
 
-    public void setId(int id){
+    public void setId(String id){
         this.id = id;
     }
 
     @Override public int compareTo(Book o) {
-        return this.id - o.id; //placeholder sorting
+        return this.pages - o.pages; //placeholder sorting
     }
 
     @Override public String toString(){

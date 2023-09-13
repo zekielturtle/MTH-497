@@ -4,10 +4,23 @@ import java.io.*;
 public class Main {
     public static void main(String[] args){
     //read in database
+    ArrayList<Book> books = new ArrayList<>();
     try(Scanner scan = new Scanner(new FileInputStream("sample.tsv"))){
     scan.useDelimiter("\t");
     while (scan.hasNext()){
-        System.out.println(scan.next());
+        String id = scan.next();
+        String title = scan.next();
+        String author = scan.next();
+        String e = scan.next();
+        String pub = scan.next();
+        String vol = scan.next();
+        int pages = scan.nextInt();
+        String call = scan.next();
+        Book book = new Book(title, author, call, pages, id);
+        books.add(book);
+        System.out.println(book.getTitle());
+        System.out.println(book.getCallNumber());
+
     }
     //some sort of SLL of books to keep them in order
     //prompt user to enter # and size of shelves
@@ -16,6 +29,19 @@ public class Main {
         System.out.println("something went wrong");
     }
     // kw trial 
+    int currSize = 0;
+    Shelf currShelf = new Shelf();
+    ArrayList<Shelf> shelves = new ArrayList<>();
+    for (Book b : books){
+        currSize += b.getSize();
+        currShelf.addBook(b);
+        if (currSize>61){
+            shelves.add(currShelf);
+            currSize = 0;
+            currShelf.clear();
+        }
+    }
+
 
 }
 }
