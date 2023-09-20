@@ -1,11 +1,12 @@
-
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Book implements Comparable<Book> {
     private String title;
     private String callNumber;
     private String author;
     private int pages;
-    private int size; //in cm
+    private double size; //in mm
     private int id;
     //maybe a bool isSet or something with other books in the set?
 
@@ -23,7 +24,7 @@ public class Book implements Comparable<Book> {
         this.callNumber = callNumber;
         this.pages = pages;
         this.id = id;
-        calcSize();
+        this.size = calcSize();
     }
 
     public Book(String title, String author, String callNumber, int id){
@@ -31,7 +32,7 @@ public class Book implements Comparable<Book> {
         this.author = author;
         this.callNumber = callNumber;
         this.id = id;
-        size = 20; //placeholder value
+        pages = 300; //placeholder value
     }
 
     public String getTitle(){
@@ -58,18 +59,17 @@ public class Book implements Comparable<Book> {
         this.author = author;
     }
 
-    public int getSize(){
+    public double getSize(){
         return size;
     }
 
-    public void setSize(int size){
+    public void setSize(double size){
         this.size = size;
     }
 
-    private int calcSize() {
-        int p = pages;
-        //code to calculate the size - likely just a linear equation from a regression model determined elsewhere
-        return 20; //placeholder value for now
+    private double calcSize() {
+        double p = pages*0.097; //average mm per page for standard copy paper (likely slightly larger than in this sample)
+        return p; 
     }
 
     public int getId(){
@@ -81,10 +81,46 @@ public class Book implements Comparable<Book> {
     }
 
     @Override public int compareTo(Book o) {
-        return this.pages - o.pages; //placeholder sorting
+        String call = this.callNumber;
+        System.out.println(call);
+        System.out.println(o.callNumber);
+        try(Scanner scan = new Scanner(call)){
+            ArrayList<String> thisList = new ArrayList<>();
+            scan.useDelimiter(" |\\.");
+            while(scan.hasNext()){
+                if(scan.next() != ""){
+                    thisList.add(scan.next());
+                }
+            }
+            scan.close();
+            Scanner scan2 = new Scanner(o.callNumber);
+            ArrayList<String> oList = new ArrayList<>();
+            scan2.useDelimiter(" |\\.");
+            while(scan2.hasNext()){
+                if(scan2.next() != ""){
+                    oList.add(scan2.next());
+                }
+            }
+            scan2.close();
+            if(thisList.size()>=oList.size()){
+                for(int i=0; i<thisList.size();i++){
+                    if(thisList.get(i) != oList.get(i)){
+                        return thisList.get(i).compareTo(oList.get(i));
+                    }
+                }
+            }else{
+                for(int i=0; i<oList.size();i++){
+                    if(thisList.get(i) != oList.get(i)){
+                        return thisList.get(i).compareTo(oList.get(i));
+                    }
+                }
+            }
+        } catch(Exception e){System.out.println("aaaaaa");}
+        return 0; //placeholder sorting
     }
 
     @Override public String toString(){
+        
         return title + " by " + author;
     }
 }
