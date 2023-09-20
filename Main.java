@@ -59,39 +59,26 @@ public class Main {
     String callB = b1.getCallNumber();
     System.out.println(callA);
     System.out.println(callB);
-    Scanner scan = new Scanner(callA);
+    Scanner scan1 = new Scanner(callA);
         ArrayList<String> thisList = new ArrayList<>();
-        scan.useDelimiter(" |\\.");
-        while(scan.hasNext()){
-            if(scan.next() != ""){
-                System.out.println(scan.next());
+        scan1.useDelimiter(" |\\.");
+        String curr;
+        while(scan1.hasNext()){
+            curr = scan1.next();
+            if(!curr.isBlank()){
+                System.out.println(curr);
             }
         }
         Scanner scan2 = new Scanner(callB);
         ArrayList<String> oList = new ArrayList<>();
         scan2.useDelimiter(" |\\.");
         while(scan2.hasNext()){
-            if(scan2.next() != ""){
+            curr=scan2.next();
+            if(!curr.isBlank()){
                 System.out.println(scan2.next());
             }
         }
-        if(thisList.size()>=oList.size()){
-            for(int i=0; i<thisList.size();i++){
-                if(thisList.get(i) != oList.get(i)){
-                    System.out.println(thisList.get(i).compareTo(oList.get(i)));
-                    break;
-                }
-            }
-        }else{
-            for(int i=0; i<oList.size();i++){
-                if(thisList.get(i) != oList.get(i)){
-                    System.out.println(thisList.get(i).compareTo(oList.get(i)));
-                    break;
-                }
-            }
-        }
-    
-    System.out.println("0"); //placeholder sorting
+     //placeholder sorting
         //scan.close();
         //scan2.close();
 
