@@ -60,24 +60,24 @@ public class Main {
     System.out.println(callA);
     System.out.println(callB);
     Scanner scan1 = new Scanner(callA);
-        ArrayList<String> thisList = new ArrayList<>();
-        scan1.useDelimiter(" |\\.");
-        String curr;
-        while(scan1.hasNext()){
-            curr = scan1.next();
-            if(!curr.isBlank()){
-                System.out.println(curr);
-            }
+    ArrayList<String> thisList = new ArrayList<>();
+    scan1.useDelimiter(" |\\.");
+    String curr;
+    while(scan1.hasNext()){
+        curr = scan1.next();
+        if(!curr.isBlank()){
+            System.out.println(curr);
         }
-        Scanner scan2 = new Scanner(callB);
-        ArrayList<String> oList = new ArrayList<>();
-        scan2.useDelimiter(" |\\.");
-        while(scan2.hasNext()){
-            curr=scan2.next();
-            if(!curr.isBlank()){
-                System.out.println(scan2.next());
-            }
+    }
+    Scanner scan2 = new Scanner(callB);
+    ArrayList<String> oList = new ArrayList<>();
+    scan2.useDelimiter(" |\\.");
+    while(scan2.hasNext()){
+        curr=scan2.next();
+        if(!curr.isBlank()){
+            System.out.println(curr);
         }
+    }
      //placeholder sorting
         //scan.close();
         //scan2.close();
