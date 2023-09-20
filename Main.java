@@ -82,23 +82,23 @@ public class Main {
         //scan.close();
         //scan2.close();
 
-    //Collections.sort(books);
-    //System.out.println(books);
+    Collections.sort(books);
     // kw trial 
-    int currSize = 0;
  
     Shelf currShelf = new Shelf();
     ArrayList<Shelf> shelves = new ArrayList<>();
     for (Book b : books){
-        currSize += b.getSize();
+        currShelf.addSize(b.getSize());
         currShelf.addBook(b);
-        if (currSize>610){
-            System.out.println("shelf size: " + currSize);
+        if (currShelf.getSize()>610){
+            System.out.println("shelf size: " + currShelf.getSize());
             shelves.add(currShelf);
-            currSize = 0;
-            currShelf.clear();
+            currShelf = new Shelf();
+            //currSize = 0;
+            //currShelf.clear();
         }
     }
+    System.out.println(shelves);
     
 
 

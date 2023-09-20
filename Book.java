@@ -87,9 +87,11 @@ public class Book implements Comparable<Book> {
         try(Scanner scan = new Scanner(call)){
             ArrayList<String> thisList = new ArrayList<>();
             scan.useDelimiter(" |\\.");
+            String curr;
             while(scan.hasNext()){
-                if(scan.next() != ""){
-                    thisList.add(scan.next());
+                curr= scan.next();
+                if(!curr.isEmpty()){
+                    thisList.add(curr);
                 }
             }
             scan.close();
@@ -97,8 +99,9 @@ public class Book implements Comparable<Book> {
             ArrayList<String> oList = new ArrayList<>();
             scan2.useDelimiter(" |\\.");
             while(scan2.hasNext()){
-                if(scan2.next() != ""){
-                    oList.add(scan2.next());
+                curr=scan2.next();
+                if(!curr.isEmpty()){
+                    oList.add(curr);
                 }
             }
             scan2.close();
