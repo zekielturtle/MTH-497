@@ -80,10 +80,32 @@ public class Book implements Comparable<Book> {
         this.id = id;
     }
 
+    public static String getABC(String input){
+        String output = "";
+        for(int i = 0; i < input.length(); i++){  
+            if (!Character.isDigit(input.charAt(i))){
+                output+=input.charAt(i);
+            }  
+         }  
+         return output;
+    }
+
+    public static String getNum(String input){
+        String output = "";
+        for(int i = 0; i < input.length(); i++){  
+            if (Character.isDigit(input.charAt(i))){
+                output+=input.charAt(i);
+            }  
+         }  
+         return output;
+    }
+
+    
+
     @Override public int compareTo(Book o) {
         String call = this.callNumber;
-        System.out.println(call);
-        System.out.println(o.callNumber);
+        //System.out.println(call);
+        //System.out.println(o.callNumber);
         try(Scanner scan = new Scanner(call)){
             ArrayList<String> thisList = new ArrayList<>();
             scan.useDelimiter(" |\\.");
@@ -105,20 +127,52 @@ public class Book implements Comparable<Book> {
                 }
             }
             scan2.close();
+
+            String oIn = oList.get(0);
+            String thisIn = thisList.get(0);
+            oList.add(0,getABC(oIn));
+            oList.set(1,getNum(oIn));
+            thisList.add(0,getABC(thisIn));
+            thisList.set(1,getNum(thisIn));
+            if(Character.isDigit(thisList.get(2).charAt(0))){
+                String num = thisList.get(1);
+                num+=".";
+                num+=thisList.get(2);
+                thisList.set(1,num);
+                thisList.remove(2);
+            }
+            if(Character.isDigit(oList.get(2).charAt(0))){
+                String num = oList.get(1);
+                num+=".";
+                num+=oList.get(2);
+                oList.set(1,num);
+                oList.remove(2);
+            }
+
             if(thisList.size()>=oList.size()){
-                for(int i=0; i<thisList.size();i++){
-                    if(thisList.get(i) != oList.get(i)){
-                        return thisList.get(i).compareTo(oList.get(i));
+                for(int i=0; i<oList.size();i++){
+                    if(thisList.get(i).compareTo(oList.get(i)) != 0){
+                        if(Character.isDigit(thisList.get(i).charAt(0))){
+                            if((Double.parseDouble(thisList.get(i)) - Double.parseDouble(oList.get(i)))<0){
+                                return -1;
+                            }else{return 1;}
+                        }
+                        else{return thisList.get(i).compareTo(oList.get(i));}
                     }
                 }
             }else{
-                for(int i=0; i<oList.size();i++){
-                    if(thisList.get(i) != oList.get(i)){
-                        return thisList.get(i).compareTo(oList.get(i));
+                for(int i=0; i<thisList.size();i++){
+                    if(thisList.get(i).compareTo(oList.get(i)) != 0){
+                        if(Character.isDigit(thisList.get(i).charAt(0))){
+                            if((Double.parseDouble(thisList.get(i)) - Double.parseDouble(oList.get(i)))<0){
+                                return -1;
+                            }else{return 1;}
+                        }
+                        else{return thisList.get(i).compareTo(oList.get(i));}
                     }
                 }
             }
-        } catch(Exception e){System.out.println("aaaaaa");}
+        } catch(Exception e){System.out.println(e);}
         return 0; //placeholder sorting
     }
 

@@ -18,9 +18,11 @@ public class Shelf {
         size+=s;
     }
 
-    public Shelf(Shelf s){
+
+
+    /*public Shelf(Shelf s){
         this.books = s.books;
-    }
+    }*/
 
     public ArrayList<Book> getBooks(){return books;}
     public void addBook(Book b){
