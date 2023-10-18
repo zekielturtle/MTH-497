@@ -18,15 +18,24 @@ public class Shelf {
         size+=s;
     }
 
+    public ArrayList<Book> getBooks(){
+        return books;
+    }
 
-
-    /*public Shelf(Shelf s){
-        this.books = s.books;
-    }*/
-
-    public ArrayList<Book> getBooks(){return books;}
-    public void addBook(Book b){
+    public void addLast(Book b){
         books.add(b);
+    }
+
+    public Book getLast(){
+        return books.get(books.size()-1);
+    }
+
+    public Book getFirst(){
+        return books.get(0);
+    }
+
+    public void addFirst(Book b){
+        books.add(0,b);
     }
 
     public void clear(){
