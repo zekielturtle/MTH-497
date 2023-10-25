@@ -100,7 +100,10 @@ public class Book implements Comparable<Book> {
          return output;
     }
 
-    
+    public boolean sameCol(Book o){
+        //if in same collection return true
+        return this.id == o.id;
+    }
 
     @Override public int compareTo(Book o) {
         String call = this.callNumber;

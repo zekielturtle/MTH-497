@@ -43,12 +43,10 @@ public class Main {
     }
 
     Collections.sort(books);
-
-    Library.newLibrary(books);
-
-    for (Book b : books){
-        System.out.println(b.getCallNumber());
-    }
+for(int i = 500; i<=700; i+=20){
+    Library l = new Library(books, i);
+    System.out.println(l.getFitness());
+}
     books.clear();
 }
 }
