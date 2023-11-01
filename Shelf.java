@@ -3,11 +3,24 @@ import java.util.*;
 public class Shelf {
     private double size;
     ArrayList<Book> books;
+    private int fitness;
 
 
     public Shelf(){
         size=0;
         books = new ArrayList<>();
+    }
+
+    
+
+    public Shelf(Shelf s){
+        this.size=s.size;
+        books = new ArrayList<>();
+        for (Book element : s.books) {
+            books.add(new Book(element));
+        }
+        //System.out.println("Duplicated Shelf " + s);
+        //System.out.println("To Shelf: " + this);
     }
 
     public double getSize(){
@@ -42,6 +55,14 @@ public class Shelf {
         books.clear();
     }
 
+    public void setFitness(int i){
+        this.fitness = i;
+    }
+
+    public int getFitness(){
+        return fitness;
+    }
+    
     @Override
     public String toString(){
         return books.toString();

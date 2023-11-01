@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Main {
+public class Main{
     public static void main(String[] args){
     //read in database
     ArrayList<Book> books = new ArrayList<>();
@@ -43,10 +43,17 @@ public class Main {
     }
 
     Collections.sort(books);
+    List<Library> libs = new ArrayList<>(0);
 for(int i = 500; i<=700; i+=20){
     Library l = new Library(books, i);
-    System.out.println(l.getFitness());
+    libs.add(l);
 }
+//Library l1 = new Library(books, 600);
+//Library l2 = new Library(books, 610);
+//System.out.println("First: " + l1.getFirsts());
+//System.out.println("Second: " + l2.getFirsts());
+Algo algo = new Algo(libs);
+algo.run();
     books.clear();
 }
 }
