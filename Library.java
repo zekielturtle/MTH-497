@@ -48,12 +48,15 @@ public class Library implements Comparable<Library>{
         int l2idxSplit = other2.getShelfIdx(getShelf(split));
 
         for(int i=0; i<l1idxSplit; i++){
-            addShelf(other1.getShelf(i));
+            addShelf(new Shelf(other1.getShelf(i)));
         }
         for(int i=l2idxSplit; i<other2.numShelves; i++){
-            addShelf(other2.getShelf(i));
+            addShelf(new Shelf(other2.getShelf(i)));
         }
+        numShelves = shelves.size();
+        calcFirsts();
         calcFitness();
+        System.out.println(fits);
     }
 
     public Library(Library other){
@@ -113,7 +116,11 @@ public class Library implements Comparable<Library>{
         return shelves.get(i);
     }
 
-
+    private void calcFirsts(){
+        for (Shelf s : shelves){
+            firsts.add(new Book(s.getFirst()));
+        }
+    }
     public Shelf getShelf(Book b){
         int l = 0, r = firsts.size() - 1;
         int m = -1;
