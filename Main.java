@@ -46,6 +46,10 @@ public class Main{
     List<Library> libs = new ArrayList<>(0);
 for(int i = 500; i<=700; i+=20){
     Library l = new Library(books, i);
+    //System.out.println("Library: " + i + ": " + l.getFitness());
+    for(Shelf s : l.getShelves()){
+        //System.out.println(s.getFitness());
+    }
     libs.add(l);
 }
 //Library l1 = new Library(books, 600);

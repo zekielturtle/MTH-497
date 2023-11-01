@@ -3,7 +3,7 @@ import java.util.*;
 public class Shelf {
     private double size;
     ArrayList<Book> books;
-    private int fitness;
+    private double fitness;
 
 
     public Shelf(){
@@ -55,14 +55,14 @@ public class Shelf {
         books.clear();
     }
 
-    public void setFitness(int i){
+    public void setFitness(double i){
         this.fitness = i;
     }
 
-    public int getFitness(){
+    public double getFitness(){
         return fitness;
     }
-    
+
     @Override
     public String toString(){
         return books.toString();

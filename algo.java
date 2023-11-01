@@ -20,11 +20,12 @@ public class Algo {
             j--;
         }
         for(Library l : pop){
-            if(random.nextDouble()<0.05){
-                System.out.println("yes mutate");
+            double rand = random.nextDouble();
+            if(rand<0.95 && rand>0.0){
+                //System.out.println("yes mutate");
                 mutate(l);
-                System.out.println("Algo 23");
-            } else{System.out.println("no mutate");}
+                //System.out.println("Algo 23");
+            } 
         }
         Collections.sort(pop);
         System.out.println(pop.get(0).getFitness());
@@ -59,17 +60,25 @@ public class Algo {
     public void mutate(Library l){
         // Calculate the total fitness score
 
-        double totalFitnessScore = l.getShelves().stream().mapToInt(Shelf::getFitness).sum();
-
+        //double totalFitnessScore = l.getShelves().stream().mapToDouble(Shelf::getFitness).sum();
+        double totalFitnessScore = 0.0;
+        for(int i : l.getFits()){
+            totalFitnessScore += i;
+        }
+        System.out.println(totalFitnessScore);
         // Generate a random number in the range [0, totalFitnessScore)
-        
-        double randomValue = random.nextDouble() * totalFitnessScore;
+        double rand = random.nextDouble();
+        while(rand==0){
+            rand = random.nextDouble();
+        }
+        double randomValue = rand * totalFitnessScore;
         System.out.println("randomValue: " + randomValue);
         // Perform weighted random selection
         Shelf selectedShelf = null;
         int cumulativeFitness = 0;
         for (Shelf shelf : l.getShelves()) {
             cumulativeFitness += shelf.getFitness();
+            System.out.println("Cumulative: " + cumulativeFitness);
             if (randomValue < cumulativeFitness) {
                 selectedShelf = shelf;
                 break;

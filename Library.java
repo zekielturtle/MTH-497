@@ -220,14 +220,16 @@ public class Library implements Comparable<Library>{
                 currScore+=5;
             }
             fits.add((int)currScore);
-            shelves.get(i).setFitness((int)currScore);
+            shelves.get(i).setFitness(currScore);
             //System.out.println("Size: " + shelves.get(i).getSize());
             //System.out.println("Score: " + fits.get(i));
             fitness+= (int)currScore;
         }
         fitness = fitness / numShelves;
     }
-
+    public List<Integer> getFits(){
+        return fits;
+    }
     public void addShelf(Shelf s){
         numShelves++;
         shelves.add(s);
