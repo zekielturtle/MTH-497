@@ -10,14 +10,19 @@ public class Algo {
 
     public void run(){
         kill();
+        System.out.println("Algo 13");
         int i = 0;
         int j = pop.size()-1;
         while(i<j){
             cross(pop.get(i),pop.get(j));
+            System.out.println(i+ " Algo 18 j: " + j);
+            i++;
+            j--;
         }
         for(Library l : pop){
             if(random.nextDouble()<0.05){
                 mutate(l);
+                System.out.println("Algo 23");
             }
         }
         Collections.sort(pop);
