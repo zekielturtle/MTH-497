@@ -234,6 +234,17 @@ public class Library implements Comparable<Library>{
         }
         fitness = fitness / numShelves;
     }
+
+    public boolean insertShelfAfter(Shelf s){
+        for(int i = 0; i<numShelves; i++){
+            if(shelves.get(i) == s){
+                shelves.add(i, new Shelf());
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public List<Integer> getFits(){
         return fits;
     }

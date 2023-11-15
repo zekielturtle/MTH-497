@@ -4,17 +4,20 @@ public class Shelf {
     private double size;
     ArrayList<Book> books;
     private double fitness;
+    private int num;
 
 
     public Shelf(){
         size=0;
         books = new ArrayList<>();
+        num=0;
     }
 
     
 
     public Shelf(Shelf s){
         this.size=s.size;
+        this.num=s.num;
         books = new ArrayList<>();
         for (Book element : s.books) {
             books.add(new Book(element));
@@ -37,10 +40,13 @@ public class Shelf {
 
     public void addLast(Book b){
         books.add(b);
+        num++;
     }
 
     public Book getLast(){
-        return books.get(books.size()-1);
+        if(books.size()>0){
+            return books.get(books.size()-1);
+        } else{return null;}
     }
 
     public Book getFirst(){
@@ -49,6 +55,7 @@ public class Shelf {
 
     public void addFirst(Book b){
         books.add(0,b);
+        num++;
     }
 
     public void clear(){
@@ -61,6 +68,10 @@ public class Shelf {
 
     public double getFitness(){
         return fitness;
+    }
+
+    public int getNumBooks(){
+        return num;
     }
 
     @Override

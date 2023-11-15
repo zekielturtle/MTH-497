@@ -95,7 +95,13 @@ public class Algo {
         }
 
         // Now, 'selectedShelf' contains the shelf selected based on its fitness score
-        System.out.println("Selected Shelf: " + selectedShelf);
+        //System.out.println("Selected Shelf: " + selectedShelf);
+        if(l.insertShelfAfter(selectedShelf)){
+            int idx = l.getShelfIdx(selectedShelf);
+            for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()/2; j--){
+                l.goForward(idx);
+            }
+        } else{ System.out.println("uh oh spaghetti-ohs");}
     }
 
 }
