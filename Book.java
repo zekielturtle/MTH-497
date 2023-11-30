@@ -19,7 +19,7 @@ public class Book implements Comparable<Book> {
     }
 
     public Book(Book b){
-        this.title = b.title;
+        title = b.title;
         this.author = b.author;
         this.callNumber = b.callNumber;
         this.pages = b.pages;

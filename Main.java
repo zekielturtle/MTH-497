@@ -46,7 +46,7 @@ public class Main{
     List<Library> libs = new ArrayList<>(0);
 for(int i = 500; i<=700; i+=20){
     Library l = new Library(books, i);
-    //System.out.println("Library: " + i + ": " + l.getFitness());
+    System.out.println("Library: " + i + ": " + l.getFitness());
     for(Shelf s : l.getShelves()){
         //System.out.println(s.getFitness());
     }
@@ -58,6 +58,25 @@ for(int i = 500; i<=700; i+=20){
 //System.out.println("Second: " + l2.getFirsts());
 Algo algo = new Algo(libs);
 algo.run();
+Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Press 'x' to quit:");
+
+        boolean flag = true;
+        while (flag) {
+            String cont = myObj.nextLine();  // Read user input
+            System.out.println(cont);
+
+            if (cont.equalsIgnoreCase("x")) {
+                System.out.println("Exiting the program. Goodbye!");
+                flag = false;  // Set flag to false to exit the loop
+            } else {
+                // Perform other actions based on user input
+                algo.kill();
+                algo.run();
+                System.out.println("Press 'x' to quit:");
+            }
+        }
+    myObj.close();
     books.clear();
 }
 }
