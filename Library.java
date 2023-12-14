@@ -191,9 +191,11 @@ public class Library implements Comparable<Library>{
 
     public void goForward(int shelfNum){
         //remove last book and put it on shelf after
-        if(shelfNum>=0 & shelfNum<shelves.size()-1){
-            Book b = shelves.get(shelfNum).getLast();
-            shelves.get(shelfNum+1).addFirst(b);
+        if(shelfNum>=0 & shelfNum<shelves.size()-2){
+            if(shelves.get(shelfNum+1).getSize()>0 & shelves.get(shelfNum).getSize()>0){
+                Book b = shelves.get(shelfNum).getLast();
+                shelves.get(shelfNum+1).addFirst(b);
+            }
         }
     }
 
@@ -237,7 +239,7 @@ public class Library implements Comparable<Library>{
 
     public boolean insertShelfAfter(Shelf s){
         for(int i = 0; i<numShelves; i++){
-            if(shelves.get(i) == s){
+            if(shelves.get(i).equals(s)){
                 shelves.add(i, new Shelf());
                 return true;
             }

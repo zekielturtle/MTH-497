@@ -43,10 +43,11 @@ public class Shelf {
         num++;
     }
 
-    public Book getLast(){
-        if(books.size()>0){
-            return books.get(books.size()-1);
-        } else{return null;}
+    public Book getLast() {
+        if (books.isEmpty()) {
+            throw new IllegalStateException("The list of books is unexpectedly empty.");
+        }
+        return books.get(books.size() - 1);
     }
 
     public Book getFirst(){
@@ -78,4 +79,19 @@ public class Shelf {
     public String toString(){
         return books.toString();
     }
+
+    @Override 
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;  // Same object reference
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;  // Different classes or null object
+        }
+
+        Shelf other = (Shelf) obj;
+        return books == other.books && Objects.equals(books, other.books);
+    }
+
 }

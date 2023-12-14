@@ -78,5 +78,6 @@ Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         }
     myObj.close();
     books.clear();
+    libs.clear();
 }
 }

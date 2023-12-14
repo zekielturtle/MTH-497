@@ -16,7 +16,7 @@ public class Algo {
         System.out.println(pop.size());
         while(j<pop.size()){
             cross(pop.get(i),pop.get(j));
-            System.out.println(i+ " Algo 18 j: " + j);
+            //System.out.println(i+ " Algo 18 j: " + j);
             i+=2;
             j+=2;
         }
@@ -78,7 +78,7 @@ public class Algo {
         double randomValue = rand * totalFitnessScore;
         //System.out.println("randomValue: " + randomValue);
         // Perform weighted random selection
-        Shelf selectedShelf = null;
+        Shelf selectedShelf = new Shelf();
         int cumulativeFitness = 0;
         int i = 0;
         for (Shelf shelf : l.getShelves()) {
