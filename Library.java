@@ -123,10 +123,41 @@ public class Library implements Comparable<Library>{
     }
 
     //get a list of all the first books of shelves
-    private void calcFirsts(){
+    private void calcFirsts(){ //probably should rework so this can be private
+        firsts.clear();
         for (Shelf s : shelves){
             firsts.add(new Book(s.getFirst()));
         }
+    }
+
+    public void removeEmpty(){
+        List<Shelf> empty = new ArrayList<>();
+        int i = 0;
+        for (Shelf s : shelves){
+            if(s.getBooks().isEmpty()){
+                empty.add(s);
+                System.out.println("goteem");
+                numShelves--;
+                fits.remove(i);
+                firsts.remove(i);
+            }
+            i++;
+        }
+    }
+
+    public void reCalcFirsts(){ //probably should rework so this can be private
+        firsts.clear();
+        List<Shelf> empty = new ArrayList<>();
+        for (Shelf s : shelves){
+            if(s.getBooks().isEmpty()){
+                empty.add(s);
+                System.out.println("goteem");
+            } else{
+                firsts.add(new Book(s.getFirst()));
+            }
+        }
+        shelves.removeAll(empty);
+        numShelves -= empty.size();
     }
 
     //search for a shelf based on a first book (binary search)
@@ -227,7 +258,7 @@ public class Library implements Comparable<Library>{
 
     //quick summary of how the fitness is calculated: if its a shelf that isn't entirely 
     //in the middle of a collection, the score is the distance to 610mm; if it is, it's the distance to 0mm
-    private void calcFitness() {
+    private void calcFitness() { //also rework to make it private or at least protected
         double currScore = 0;
         for (int i=0; i<shelves.size()-2; i++){
             if(shelves.get(i).getLast().sameCol(shelves.get(i).getFirst()) & shelves.get(i).getLast().sameCol(shelves.get(i+1).getFirst())){
@@ -252,6 +283,12 @@ public class Library implements Comparable<Library>{
             fitness+= (int)currScore;
         }
         fitness = fitness / numShelves; //average it over all the shelves
+    }
+
+    public void reCalcFitness(){
+        fits.clear();
+        fitness = 0;
+        calcFitness();
     }
 
     public boolean insertShelfAfter(Shelf s){

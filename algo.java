@@ -19,7 +19,7 @@ public class Algo {
         }
         for(Library l : pop){
             double rand = random.nextDouble();
-            if(rand<0.95 && rand>0.0){ //right now its a high mutation chance for testing
+            if(rand<0.05 && rand>0.0){ 
                 mutate(l);
             } 
         }
@@ -57,6 +57,7 @@ public class Algo {
     }
 
     public void mutate(Library l){
+        l.removeEmpty();
         // Calculate the total fitness score
         //tbh most of this was AI generated but it works to pick a random shelf weighted by fitness 
         //(a worse one is more likely to get mutated)
@@ -96,6 +97,8 @@ public class Algo {
             for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()/2; j--){ //split the selected shelf in half to a new shelf after it
                 l.goForward(idx);
             }
+            l.reCalcFirsts();
+            l.reCalcFitness();
         } else{ 
             System.out.println("uh oh spaghetti-ohs");
         }
