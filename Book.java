@@ -8,7 +8,6 @@ public class Book implements Comparable<Book> {
     private int pages;
     private double size; //in mm
     private int id;
-    //maybe a bool isSet or something with other books in the set?
 
     public Book(){
         title = "";
@@ -89,7 +88,7 @@ public class Book implements Comparable<Book> {
         this.id = id;
     }
 
-    public static String getABC(String input){
+    public static String getABC(String input){ //helper method for the call number stuff
         String output = "";
         for(int i = 0; i < input.length(); i++){  
             if (!Character.isDigit(input.charAt(i))){
@@ -99,7 +98,7 @@ public class Book implements Comparable<Book> {
          return output;
     }
 
-    public static String getNum(String input){
+    public static String getNum(String input){ //another helper method
         String output = "";
         for(int i = 0; i < input.length(); i++){  
             if (Character.isDigit(input.charAt(i))){
@@ -114,7 +113,7 @@ public class Book implements Comparable<Book> {
         return this.id == o.id;
     }
 
-    @Override public int compareTo(Book o) {
+    @Override public int compareTo(Book o) { //just ignore this it's awful but it works for sorting them by call number
         String call = this.callNumber;
         //System.out.println(call);
         //System.out.println(o.callNumber);

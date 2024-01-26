@@ -35,9 +35,7 @@ public class Main{
             } 
         scan.close();
     } 
-    //some sort of SLL of books to keep them in order
-    //prompt user to enter # and size of shelves
-    //randomly split books to shelves
+
     }catch(FileNotFoundException fnfe){
         System.out.println("something went wrong");
     }
@@ -45,18 +43,12 @@ public class Main{
     Collections.sort(books);
     List<Library> libs = new ArrayList<>(0);
 for(int i = 500; i<=700; i+=20){
-    Library l = new Library(books, i);
+    Library l = new Library(books, i); //create new library with shelf break point at i mm
     System.out.println("Library: " + i + ": " + l.getFitness());
-    for(Shelf s : l.getShelves()){
-        //System.out.println(s.getFitness());
-    }
-    libs.add(l);
+    libs.add(l); //add to full library
 }
-//Library l1 = new Library(books, 600);
-//Library l2 = new Library(books, 610);
-//System.out.println("First: " + l1.getFirsts());
-//System.out.println("Second: " + l2.getFirsts());
-Algo algo = new Algo(libs);
+
+Algo algo = new Algo(libs); //new genetic algorithm on the set of libraries
 algo.run();
 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Press 'x' to quit:");

@@ -7,8 +7,10 @@ public class Library implements Comparable<Library>{
     private ArrayList<Integer> fits = new ArrayList<>();
     private ArrayList<Book> firsts = new ArrayList<>();
 
+    //you ready for copy constructors galore??
 
-    public Library(ArrayList<Book> books, int minSize){
+    //regular constructor that takes a list of books and makes shelves out of them, splitting to a new shelf on the minSize
+    public Library(ArrayList<Book> books, int minSize){ 
         Shelf currShelf = new Shelf();
         //shelves = new ArrayList<>();
         for (Book b : books){
@@ -26,6 +28,7 @@ public class Library implements Comparable<Library>{
         calcFitness();
     }
 
+    //cross constructor to make a new library based on 2 other libraries and where they should mix
     public Library(Library other1, Library other2, Book split){
         //int idx = 0;
         /*Shelf split1 = other1.getShelf(split);
@@ -44,21 +47,22 @@ public class Library implements Comparable<Library>{
         }
         this.shelves.add(currShelf);*/
 
-        int l1idxSplit = other1.getShelfIdx(getShelf(split));
-        int l2idxSplit = other2.getShelfIdx(getShelf(split));
+        int l1idxSplit = other1.getShelfIdx(other1.getShelf(split));
+        int l2idxSplit = other2.getShelfIdx(other2.getShelf(split)); //this feels wonky idk
 
         for(int i=0; i<l1idxSplit; i++){
-            addShelf(new Shelf(other1.getShelf(i)));
+            addShelf(new Shelf(other1.getShelf(i))); //add shelves from l1 until the split
         }
-        for(int i=l2idxSplit; i<other2.numShelves; i++){
+        for(int i=l2idxSplit; i<other2.numShelves; i++){ //switch to l2 and add shelves until the end
             addShelf(new Shelf(other2.getShelf(i)));
         }
         numShelves = shelves.size();
         calcFirsts();
         calcFitness();
-        System.out.println(fits);
+        //System.out.println(fits);
     }
 
+    //copy constructor yippee
     public Library(Library other){
         for (Shelf element : other.shelves) {
             shelves.add(new Shelf(element));
@@ -82,6 +86,7 @@ public class Library implements Comparable<Library>{
         //System.out.println(this.numShelves + " in new library");
     }
 
+    //self explanatory, idk why i needed it necessarily but it's here
     public List<Book> getFirstsCopy(){
         List<Book> newFirsts = new ArrayList<>();
         for(Book b : firsts){
@@ -94,6 +99,7 @@ public class Library implements Comparable<Library>{
         return firsts;
     }
 
+    //default constructor with no minSize (auto-set to 610)
     public Library(ArrayList<Book> books){
         Shelf currShelf = new Shelf();
         //shelves = new ArrayList<>();
@@ -116,11 +122,14 @@ public class Library implements Comparable<Library>{
         return shelves.get(i);
     }
 
+    //get a list of all the first books of shelves
     private void calcFirsts(){
         for (Shelf s : shelves){
             firsts.add(new Book(s.getFirst()));
         }
     }
+
+    //search for a shelf based on a first book (binary search)
     public Shelf getShelf(Book b){
         int l = 0, r = firsts.size() - 1;
         int m = -1;
@@ -158,6 +167,7 @@ public class Library implements Comparable<Library>{
         return shelves.get(m);
     }
 
+    //search for a shelf idx (also binary search)
     public int getShelfIdx(Shelf s){
         int l = 0, r = firsts.size() - 1;
         int m = -1;
@@ -181,17 +191,22 @@ public class Library implements Comparable<Library>{
         return m;
     }
 
+    //these next two are also problem children
     public void goBack(int shelfNum){
-        //remove first book and put it on the shelf before
-        if(shelfNum>0 & shelfNum<shelves.size()){
+        //remove first book of shelf #shelfNum and put it on the shelf before
+        if(shelfNum>0 && shelfNum<shelves.size()){
             Book b = shelves.get(shelfNum).getFirst();
             shelves.get(shelfNum-1).addLast(b);
+        }else if(shelfNum==0){
+            System.out.println("there's no shelf to go back to");
+        }else{
+            System.out.println("how did you even manage this");
         }
     }
 
     public void goForward(int shelfNum){
         //remove last book and put it on shelf after
-        if(shelfNum>=0 & shelfNum<shelves.size()-2){
+        if(shelfNum>=0 && shelfNum<shelves.size()-1){
             if(shelves.get(shelfNum+1).getSize()>0 & shelves.get(shelfNum).getSize()>0){
                 Book b = shelves.get(shelfNum).getLast();
                 shelves.get(shelfNum+1).addFirst(b);
@@ -210,6 +225,8 @@ public class Library implements Comparable<Library>{
         return shelves;
     }
 
+    //quick summary of how the fitness is calculated: if its a shelf that isn't entirely 
+    //in the middle of a collection, the score is the distance to 610mm; if it is, it's the distance to 0mm
     private void calcFitness() {
         double currScore = 0;
         for (int i=0; i<shelves.size()-2; i++){
@@ -234,7 +251,7 @@ public class Library implements Comparable<Library>{
             //System.out.println("Score: " + fits.get(i));
             fitness+= (int)currScore;
         }
-        fitness = fitness / numShelves;
+        fitness = fitness / numShelves; //average it over all the shelves
     }
 
     public boolean insertShelfAfter(Shelf s){
@@ -250,15 +267,19 @@ public class Library implements Comparable<Library>{
     public List<Integer> getFits(){
         return fits;
     }
+
+    //add a new shelf to the end (used in constructor)
     public void addShelf(Shelf s){
         numShelves++;
         shelves.add(s);
         firsts.add(s.getFirst());
     }
+
     @Override
     public String toString(){
         return shelves.toString();
     }
+    
     @Override 
     public int compareTo(Library o){
         return this.fitness - o.fitness;

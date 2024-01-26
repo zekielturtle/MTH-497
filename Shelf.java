@@ -80,6 +80,7 @@ public class Shelf {
         return books.toString();
     }
 
+    //uh yeah i totally remember writing this
     @Override 
     public boolean equals(Object obj) {
         if (this == obj) {
