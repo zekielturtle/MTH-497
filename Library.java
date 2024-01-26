@@ -258,6 +258,7 @@ public class Library implements Comparable<Library>{
         for(int i = 0; i<numShelves; i++){
             if(shelves.get(i).equals(s)){
                 shelves.add(i, new Shelf());
+                numShelves++;
                 return true;
             }
         }
@@ -279,7 +280,7 @@ public class Library implements Comparable<Library>{
     public String toString(){
         return shelves.toString();
     }
-    
+
     @Override 
     public int compareTo(Library o){
         return this.fitness - o.fitness;

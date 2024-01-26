@@ -96,7 +96,9 @@ public class Algo {
             for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()/2; j--){ //split the selected shelf in half to a new shelf after it
                 l.goForward(idx);
             }
-        } else{ System.out.println("uh oh spaghetti-ohs");}
+        } else{ 
+            System.out.println("uh oh spaghetti-ohs");
+        }
     }
 
 }
