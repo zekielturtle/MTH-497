@@ -20,6 +20,7 @@ public class Algo {
         for(Library l : pop){
             double rand = random.nextDouble();
             if(rand<0.05 && rand>0.0){ 
+                System.out.println("mutating...");
                 mutate(l);
             } 
         }
@@ -86,10 +87,11 @@ public class Algo {
             //System.out.println("Cumulative: " + cumulativeFitness);
             if (randomValue < cumulativeFitness) {
                 selectedShelf = shelf;
+                System.out.println(randomValue + " " + cumulativeFitness + selectedShelf);
                 break;
             }
         }
-
+        System.out.println(l.getFitness());
         // Now, 'selectedShelf' contains the shelf selected based on its fitness score
         //System.out.println("Selected Shelf: " + selectedShelf);
         if(l.insertShelfAfter(selectedShelf)){
@@ -98,7 +100,9 @@ public class Algo {
                 l.goForward(idx);
             }
             l.reCalcFirsts();
+            //System.out.println(l.getFitness());
             l.reCalcFitness();
+            System.out.println(l.getFitness());
         } else{ 
             System.out.println("uh oh spaghetti-ohs");
         }

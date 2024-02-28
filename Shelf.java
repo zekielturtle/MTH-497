@@ -41,6 +41,7 @@ public class Shelf {
     public void addLast(Book b){
         books.add(b);
         num++;
+        size+=b.getSize();
     }
 
     public Book getLast() {
@@ -50,13 +51,33 @@ public class Shelf {
         return books.get(books.size() - 1);
     }
 
+    public Book popLast() {
+        if (books.isEmpty()) {
+            throw new IllegalStateException("The list of books is unexpectedly empty.");
+        }
+        Book pop = books.get(books.size() - 1);
+        books.remove(books.size()-1);
+        size-=pop.getSize();
+        num--;
+        return pop;
+    }
+
     public Book getFirst(){
         return books.get(0);
+    }
+
+    public Book popFirst(){
+        Book pop = books.get(0);
+        books.remove(0);
+        size-=pop.getSize();
+        num--;
+        return pop;
     }
 
     public void addFirst(Book b){
         books.add(0,b);
         num++;
+        size+=b.getSize();
     }
 
     public void clear(){

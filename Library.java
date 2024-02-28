@@ -14,7 +14,6 @@ public class Library implements Comparable<Library>{
         Shelf currShelf = new Shelf();
         //shelves = new ArrayList<>();
         for (Book b : books){
-            currShelf.addSize(b.getSize());
             currShelf.addLast(b);
             if (currShelf.getSize()>minSize){
                 //System.out.println("shelf size: " + currShelf.getSize());
@@ -104,7 +103,6 @@ public class Library implements Comparable<Library>{
         Shelf currShelf = new Shelf();
         //shelves = new ArrayList<>();
         for (Book b : books){
-            currShelf.addSize(b.getSize());
             currShelf.addLast(b);
             if (currShelf.getSize()>610){
                 //System.out.println("shelf size: " + currShelf.getSize());
@@ -226,7 +224,7 @@ public class Library implements Comparable<Library>{
     public void goBack(int shelfNum){
         //remove first book of shelf #shelfNum and put it on the shelf before
         if(shelfNum>0 && shelfNum<shelves.size()){
-            Book b = shelves.get(shelfNum).getFirst();
+            Book b = shelves.get(shelfNum).popFirst();
             shelves.get(shelfNum-1).addLast(b);
         }else if(shelfNum==0){
             System.out.println("there's no shelf to go back to");
@@ -239,7 +237,7 @@ public class Library implements Comparable<Library>{
         //remove last book and put it on shelf after
         if(shelfNum>=0 && shelfNum<shelves.size()-1){
             if(shelves.get(shelfNum+1).getSize()>0 & shelves.get(shelfNum).getSize()>0){
-                Book b = shelves.get(shelfNum).getLast();
+                Book b = shelves.get(shelfNum).popLast();
                 shelves.get(shelfNum+1).addFirst(b);
             }
         }
@@ -282,7 +280,7 @@ public class Library implements Comparable<Library>{
             //System.out.println("Score: " + fits.get(i));
             fitness+= (int)currScore;
         }
-        fitness = fitness / numShelves; //average it over all the shelves
+        //fitness = fitness / numShelves; //average it over all the shelves
     }
 
     public void reCalcFitness(){
