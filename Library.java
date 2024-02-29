@@ -236,11 +236,13 @@ public class Library implements Comparable<Library>{
     }
 
     public void goForward(int shelfNum){
+        System.out.println("...IN move a book method forward....");
         //remove last book and put it on shelf after
         if(shelfNum>=0 && shelfNum<shelves.size()-1){
             if(shelves.get(shelfNum+1).getSize()>0 & shelves.get(shelfNum).getSize()>0){
                 Book b = shelves.get(shelfNum).getLast();
                 shelves.get(shelfNum+1).addFirst(b);
+                System.out.println("Moved the book...............");
             }
         }
     }

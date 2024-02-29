@@ -19,8 +19,11 @@ public class Algo {
         }
         for(Library l : pop){
             double rand = random.nextDouble();
-            if(rand<0.05 && rand>0.0){ 
+            System.out.println("Random number " + Double.toString(rand));
+            if(rand<0.85 && rand>0.0){ 
+                System.out.println("Attempt to mutate");
                 mutate(l);
+
             } 
         }
         Collections.sort(pop); //sort by fitness
@@ -39,6 +42,7 @@ public class Algo {
 
     //the problem child function
     public void cross(Library i1, Library i2){ 
+        System.out.println("Attempt to Cross");
         List<Book> results = i1.getFirstsCopy();
         results.retainAll(i2.getFirsts()); //find all the shelves that have the same first book in both libs
         System.out.println(results.size()); //see how many there were
@@ -56,16 +60,19 @@ public class Algo {
         }   
     }
 
-    public void mutate(Library l){
-        l.removeEmpty();
+    public void mutate(Library lib){
+        System.out.println("Attempt to Mutate");
+        lib.removeEmpty();
+        
         // Calculate the total fitness score
         //tbh most of this was AI generated but it works to pick a random shelf weighted by fitness 
         //(a worse one is more likely to get mutated)
 
         //I think this was buggy so I changed it to below but idk -> double totalFitnessScore = l.getShelves().stream().mapToDouble(Shelf::getFitness).sum();
         double totalFitnessScore = 0.0;
-        for(int i : l.getFits()){
+        for(int i : lib.getFits()){
             totalFitnessScore += i;
+    
         }
         // Generate a random number in the range [0, totalFitnessScore)
         double rand = random.nextDouble();
@@ -78,7 +85,7 @@ public class Algo {
         Shelf selectedShelf = new Shelf();
         int cumulativeFitness = 0;
         int i = 0;
-        for (Shelf shelf : l.getShelves()) {
+        for (Shelf shelf : lib.getShelves()) {
             //System.out.println("i: " + i);
             i++;
             //System.out.println("Shelf fit: " + shelf.getFitness());
@@ -92,15 +99,15 @@ public class Algo {
 
         // Now, 'selectedShelf' contains the shelf selected based on its fitness score
         //System.out.println("Selected Shelf: " + selectedShelf);
-        if(l.insertShelfAfter(selectedShelf)){
-            int idx = l.getShelfIdx(selectedShelf);
+        if(lib.insertShelfAfter(selectedShelf)){
+            int idx = lib.getShelfIdx(selectedShelf);
             for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()/2; j--){ //split the selected shelf in half to a new shelf after it
-                l.goForward(idx);
+                lib.goForward(idx);
             }
-            l.reCalcFirsts();
-            l.reCalcFitness();
+            lib.reCalcFirsts();
+            lib.reCalcFitness();
         } else{ 
-            System.out.println("uh oh spaghetti-ohs");
+            System.out.println("Problem in InsertShelf");
         }
     }
 
