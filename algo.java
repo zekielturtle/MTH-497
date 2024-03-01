@@ -92,23 +92,26 @@ public class Algo {
             cumulativeFitness += shelf.getFitness();
             //System.out.println("Cumulative: " + cumulativeFitness);
             if (randomValue < cumulativeFitness) {
-                selectedShelf = shelf;
+             
+               selectedShelf = shelf;
                 break;
             }
         }
-
+        //selectedShelf = lib.getShelf(0); // Will pick the first shelf always
         // Now, 'selectedShelf' contains the shelf selected based on its fitness score
         //System.out.println("Selected Shelf: " + selectedShelf);
-        if(lib.insertShelfAfter(selectedShelf)){
+        //if(lib.insertShelfAfter(selectedShelf)){
             int idx = lib.getShelfIdx(selectedShelf);
-            for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()/2; j--){ //split the selected shelf in half to a new shelf after it
+            for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()-3 ; j--){ //move 5 books
+                           //why did this move half the books? 
+            //for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()/2; j--){ //split the selected shelf in half to a new shelf after it
                 lib.goForward(idx);
             }
             lib.reCalcFirsts();
             lib.reCalcFitness();
-        } else{ 
-            System.out.println("Problem in InsertShelf");
-        }
+        //} else{ 
+          //  System.out.println("Problem in InsertShelf");
+        //}
     }
 
 }
