@@ -27,7 +27,15 @@ public class Shelf {
     }
 
     public double getSize(){
-        return size;
+
+        double s = 0; 
+        for(Book b : books) {
+            s = s + b.getSize();
+        }
+
+
+        this.size = s; 
+        return this.size;
     }
 
     public void addSize(double s){
@@ -49,25 +57,33 @@ public class Shelf {
             throw new IllegalStateException("The list of books is unexpectedly empty.");
         }
         return books.get(books.size() - 1);
+        /// DID THIS POP THE BOOK? 
+
     }
 
     public Book popLast() {
         if (books.isEmpty()) {
             throw new IllegalStateException("The list of books is unexpectedly empty.");
         }
-        Book pop = books.get(books.size() - 1);
-        books.remove(books.size()-1);
-        size-=pop.getSize();
+        Book b = new Book(books.get(books.size() - 1));
         num--;
-        return pop;
+        books.remove(books.size()-1);
+        return b;
+
+        /// DID THIS POP THE BOOK? 
+        
     }
+
 
     public Book getFirst(){
         return books.get(0);
     }
 
     public Book popFirst(){
-        Book pop = books.get(0);
+        if (books.isEmpty()) {
+            throw new IllegalStateException("The list of books is unexpectedly empty.");
+        }
+        Book pop = new Book(books.get(0));
         books.remove(0);
         size-=pop.getSize();
         num--;

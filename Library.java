@@ -234,11 +234,20 @@ public class Library implements Comparable<Library>{
     }
 
     public void goForward(int shelfNum){
+        System.out.println("...IN move a book method forward...." + shelfNum);
+        System.out.println(shelves.get(shelfNum+1).getSize() + "  " + shelves.get(shelfNum+0).getSize() );
         //remove last book and put it on shelf after
         if(shelfNum>=0 && shelfNum<shelves.size()-1){
-            if(shelves.get(shelfNum+1).getSize()>0 & shelves.get(shelfNum).getSize()>0){
-                Book b = shelves.get(shelfNum).popLast();
+            System.out.println("On a shelf " + shelfNum + " with books " + shelves.get(shelfNum).getNumBooks());
+            System.out.println("On a shelf " + (shelfNum + 1) + " with books " + shelves.get(shelfNum + 1).getNumBooks());
+            
+            System.out.println(shelves.get(shelfNum).getSize() + "  " + shelves.get(shelfNum+1).getSize() );
+           if(shelves.get(shelfNum+1).getSize()>0 & shelves.get(shelfNum).getSize()>0){
+                System.out.println("Size ok " + shelfNum);
+                Book b = shelves.get(shelfNum).popLast();   // DID THIS POP THE BOOK? 
                 shelves.get(shelfNum+1).addFirst(b);
+                System.out.println("Moved the book. ???");
+                calcFitness();
             }
         }
     }
@@ -276,11 +285,12 @@ public class Library implements Comparable<Library>{
             }
             fits.add((int)currScore);
             shelves.get(i).setFitness(currScore);
-            //System.out.println("Size: " + shelves.get(i).getSize());
+            System.out.println("Size: " + shelves.get(i).getSize());
             //System.out.println("Score: " + fits.get(i));
             fitness+= (int)currScore;
         }
-        //fitness = fitness / numShelves; //average it over all the shelves
+        fitness = fitness / numShelves; //average it over all the shelves
+        System.out.println("Fitness " + fitness + " Shelves " + numShelves);
     }
 
     public void reCalcFitness(){
