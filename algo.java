@@ -19,7 +19,7 @@ public class Algo {
         }
         for(Library l : pop){
             double rand = random.nextDouble();
-            System.out.println("Random number " + Double.toString(rand));
+            System.out.println("Algo: Works Random number " + Double.toString(rand));
             if(rand<0.85 && rand>0.0){ 
                 System.out.println("Attempt to mutate");
                 mutate(l);
