@@ -247,7 +247,7 @@ public class Library implements Comparable<Library>{
                 //System.out.println("Size ok " + shelfNum);
                 Book b = shelves.get(shelfNum).popLast();   // DID THIS POP THE BOOK? 
                 shelves.get(shelfNum+1).addFirst(b);
-                System.out.println("Moved the book. ???");
+                System.out.println("Library: Moved the book.");
                 //calcFitness();
             //}
         }

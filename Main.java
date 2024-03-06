@@ -4,7 +4,7 @@ import java.io.*;
 public class Main{
     public static void main(String[] args){
     //read in database
-    System.out.println("Update 2");
+    System.out.println("Update KW - 3-6 at 2:44 pm");
     ArrayList<Book> books = new ArrayList<>();
     ArrayList<String> calls = new ArrayList<>();
     try(Scanner file = new Scanner(new FileInputStream("sample.tsv"))){

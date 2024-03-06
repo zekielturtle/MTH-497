@@ -61,7 +61,7 @@ public class Algo {
     }
 
     public void mutate(Library lib){
-        System.out.println("Attempt to Mutate");
+        System.out.println("Attempt to Mutate - method");
         lib.removeEmpty();
         
         // Calculate the total fitness score
@@ -107,7 +107,8 @@ public class Algo {
                 //for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()-3 ; j--){ //move 5 books
                            //why did this move half the books? 
                 int num = selectedShelf.getNumBooks();
-                for(int j = 1; j<=num/2; j++){ //split the selected shelf in half to a new shelf after it
+                for(int j = 1; j<num/2; j++){ //split the selected shelf in half to a new shelf after it
+                    System.out.println("On shelf " + idx + " with " + num + " books to start and pulling "+ (num/2 + 1) + "books");
                     lib.goForward(idx);
                 }
             lib.removeEmpty();

@@ -54,7 +54,7 @@ public class Shelf {
 
     public Book getLast() {
         if (books.isEmpty()) {
-            throw new IllegalStateException("The list of books is unexpectedly empty.");
+            throw new IllegalStateException("The list of books is unexpectedly empty - GET");
         }
         return books.get(books.size() - 1);
         /// DID THIS POP THE BOOK? 
@@ -63,11 +63,12 @@ public class Shelf {
 
     public Book popLast() {
         if (books.isEmpty()) {
-            throw new IllegalStateException("The list of books is unexpectedly empty.");
+            throw new IllegalStateException("The list of books is unexpectedly empty - POP");
         }
         Book b = new Book(books.get(books.size() - 1));
         num--;
         books.remove(books.size()-1);
+        System.out.println(".....SHELF: Number of books left " + books.size());
         return b;
 
         /// DID THIS POP THE BOOK? 
@@ -109,7 +110,7 @@ public class Shelf {
     }
 
     public int getNumBooks(){
-        return num;
+        return books.size();
     }
 
     @Override
