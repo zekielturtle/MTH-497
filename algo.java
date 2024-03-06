@@ -100,18 +100,25 @@ public class Algo {
         //selectedShelf = lib.getShelf(0); // Will pick the first shelf always
         // Now, 'selectedShelf' contains the shelf selected based on its fitness score
         //System.out.println("Selected Shelf: " + selectedShelf);
-        //if(lib.insertShelfAfter(selectedShelf)){
+        System.out.println("number of books on shelf before: " + selectedShelf.getNumBooks());
             int idx = lib.getShelfIdx(selectedShelf);
-            for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()-3 ; j--){ //move 5 books
+            lib.insertShelfAfter(idx);
+            if(selectedShelf.getNumBooks()>1){
+                //for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()-3 ; j--){ //move 5 books
                            //why did this move half the books? 
-            //for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()/2; j--){ //split the selected shelf in half to a new shelf after it
-                lib.goForward(idx);
-            }
+                int num = selectedShelf.getNumBooks();
+                for(int j = 1; j<=num/2; j++){ //split the selected shelf in half to a new shelf after it
+                    lib.goForward(idx);
+                }
+            lib.removeEmpty();
             lib.reCalcFirsts();
             lib.reCalcFitness();
-        //} else{ 
-          //  System.out.println("Problem in InsertShelf");
-        //}
+            }
+            System.out.println("number of books on shelf after: " + selectedShelf.getNumBooks());
+            System.out.println("number of books on shelf 2 after: " + lib.getShelf(idx+1).getNumBooks());
+        /*} else{ 
+            System.out.println("Problem in InsertShelf");
+        }*/
     }
 
 }
