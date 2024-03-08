@@ -49,7 +49,7 @@ for(int i = 300; i<=300; i+=20){
     libs.add(l); //add to full library
 }
 
-Algo algo = new Algo(libs); //new genetic algorithm on the set of libraries
+algo algo = new algo(libs); //new genetic algorithm on the set of libraries
 algo.run();
 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Press 'x' to quit:");

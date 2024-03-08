@@ -66,8 +66,9 @@ public class Shelf {
             throw new IllegalStateException("Shelf: The list of books is unexpectedly empty - POP");
         }
         Book b = new Book(books.get(books.size() - 1));
-        num--;
+    
         books.remove(books.size()-1);
+        num = books.size();
         System.out.println(".....SHELF: Number of books left " + books.size());
         return b;
 
