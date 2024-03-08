@@ -134,7 +134,7 @@ public class Library implements Comparable<Library>{
         for (Shelf s : shelves){
             if(s.getBooks().isEmpty()){
                 empty.add(s);
-                System.out.println("goteem");
+                System.out.println("LIBRARY: goteem - Remove empty shelves? ");
                 numShelves--;
                 fits.remove(i);
                 firsts.remove(i);
@@ -149,7 +149,7 @@ public class Library implements Comparable<Library>{
         for (Shelf s : shelves){
             if(s.getBooks().isEmpty()){
                 empty.add(s);
-                System.out.println("goteem");
+                System.out.println("Library: goteem - recalcfirsts");
             } else{
                 firsts.add(new Book(s.getFirst()));
             }
@@ -162,7 +162,7 @@ public class Library implements Comparable<Library>{
     public Shelf getShelf(Book b){
         int l = 0, r = firsts.size() - 1;
         int m = -1;
-        System.out.println("First books: " + firsts + " looking for book: " + b);
+        System.out.println("Library: First books: " + firsts + " looking for book: " + b);
         while (l <= r) {
             System.out.println(l + " " + r);
             m = l + (r - l) / 2;
