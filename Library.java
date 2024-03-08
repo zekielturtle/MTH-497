@@ -205,7 +205,7 @@ public class Library implements Comparable<Library>{
             m = l + (r - l) / 2;
  
             // Check if x is present at mid
-            if (firsts.get(m) == b){
+            if (firsts.get(m).compareTo(b)==0){
                 break;
             }
             // If x greater, ignore left half
