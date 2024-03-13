@@ -106,13 +106,21 @@ public class Algo {
         //System.out.println("Selected Shelf: " + selectedShelf);
         System.out.println("number of books on shelf before: " + selectedShelf.getNumBooks());
             int idx = lib.getShelfIdx(selectedShelf);
+            Shelf s = lib.shelves.get(idx);
+            System.out.println("Algo: books on shelf " + s.getNumBooks());
+            
             lib.insertShelfAfter(idx);
             if(selectedShelf.getNumBooks()>1){
                 //for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()-3 ; j--){ //move 5 books
                            //why did this move half the books? 
                 int num = selectedShelf.getNumBooks();
+<<<<<<< HEAD
+                for(int j = 1; j<num/2; j++){ //split the selected shelf in half to a new shelf after it
+                    System.out.println("ALGO: On shelf " + idx + " with " + num + " books to start and pulling "+ (num/2 + 1) + "books");
+=======
                 for(int j = 0; j<=num/2; j++){ //split the selected shelf in half to a new shelf after it
                     System.out.println("On shelf " + idx + " with " + num + " books to start and pulling "+ (num/2 + 1) + "books");
+>>>>>>> 077f772c6d4bd2500b06f8a9a3ab887f4459f58e
                     lib.goForward(idx);
                 }
             lib.removeEmpty();

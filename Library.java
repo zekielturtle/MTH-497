@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Library implements Comparable<Library>{
-    private ArrayList<Shelf> shelves = new ArrayList<>();
+    public ArrayList<Shelf> shelves = new ArrayList<>();
     private int numShelves;
     private int fitness;
     private ArrayList<Integer> fits = new ArrayList<>();
@@ -265,6 +265,8 @@ public class Library implements Comparable<Library>{
             //System.out.println(shelves.get(shelfNum).getSize() + "  " + shelves.get(shelfNum+1).getSize() );
            //if(shelves.get(shelfNum+1).getSize()>0 & shelves.get(shelfNum).getSize()>0){
                 //System.out.println("Size ok " + shelfNum);
+                Shelf s = shelves.get(shelfNum);
+                System.out.println("LIB: On shelf with books: " + s.getNumBooks());
                 Book b = shelves.get(shelfNum).popLast();   // DID THIS POP THE BOOK? 
                 shelves.get(shelfNum+1).addFirst(b);
                 System.out.println("Library: Moved the book.");
