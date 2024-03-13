@@ -48,9 +48,23 @@ public class Library implements Comparable<Library>{
 
         int l1idxSplit = other1.getShelfIdx(other1.getShelf(split));
         int l2idxSplit = other2.getShelfIdx(other2.getShelf(split)); //this feels wonky idk
-
+        int idxShelf1;
+        int idxShelf2;
+        for(int i = 0; other1.getShelf(l1idxSplit).getBook(i).compareTo(split)<=0; i++){
+            idxShelf1=i;
+        }
+        for(int i = 0; other2.getShelf(l2idxSplit).getBook(i).compareTo(split)<=0; i++){
+            idxShelf2=i;
+        }
         for(int i=0; i<l1idxSplit; i++){
             addShelf(new Shelf(other1.getShelf(i))); //add shelves from l1 until the split
+        }
+        Shelf s = new Shelf();
+        for(int i = 0; i<idxShelf1; i++){
+            s.addLast(new Book(other1.getShelf(l1idxSplit).getBook(i)));
+        }
+        for(int i = idxShelf2; i<other2.getShelf(l2idxSplit).getNumBooks(); i++){
+            s.addLast(new Book(other2.getShelf(l2idxSplit).getBook(i)));
         }
         for(int i=l2idxSplit; i<other2.numShelves; i++){ //switch to l2 and add shelves until the end
             addShelf(new Shelf(other2.getShelf(i)));
@@ -158,9 +172,15 @@ public class Library implements Comparable<Library>{
         numShelves -= empty.size();
     }
 
-    //search for a shelf based on a first book (binary search)
+    //search for a shelf based on a book (binary search)
     public Shelf getShelf(Book b){
-        int l = 0, r = firsts.size() - 1;
+        for(int i=0; i<shelves.size(); i++){
+            if(shelves.get(i).getFirst().compareTo(b) > 0){
+                return shelves.get(i-1);
+            }
+        }
+        return shelves.get(shelves.size()-1);
+        /*int l = 0, r = firsts.size() - 1;
         int m = -1;
         System.out.println("Library: First books: " + firsts + " looking for book: " + b);
         while (l <= r) {
@@ -174,7 +194,7 @@ public class Library implements Comparable<Library>{
             if(firsts.get(r).compareTo(b) == 0){
                 System.out.println("106");
                 return shelves.get(r);
-            }*/
+            }
             // Check if x is present at mid
             if (firsts.get(m).compareTo(b) == 0){
                 System.out.println("111");
@@ -193,7 +213,7 @@ public class Library implements Comparable<Library>{
                 System.out.println("New values: " + l + " " + r);
             }
         }
-        return shelves.get(m);
+        return shelves.get(m);*/
     }
 
     //search for a shelf idx (also binary search)

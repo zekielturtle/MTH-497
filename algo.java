@@ -43,22 +43,26 @@ public class Algo {
     //the problem child function
     public void cross(Library i1, Library i2){ 
         System.out.println("Attempt to Cross");
-        List<Book> results = i1.getFirstsCopy();
-        results.retainAll(i2.getFirsts()); //find all the shelves that have the same first book in both libs
-        System.out.println(results.size()); //see how many there were
-        if(results.size()>0){ //cross only if they had some in common
+        //List<Book> results = i1.getFirstsCopy();
+        //results.retainAll(i2.getFirsts()); //find all the shelves that have the same first book in both libs
+        //System.out.println(results.size()); //see how many there were
+        //if(results.size()>0){ //cross only if they had some in common
             Library l1 = new Library(i1); //keep the ogs fine (copy constructor issue mayhaps???)
             Library l2 = new Library(i2);
-            for (Book b : results){
+            //TODO: RANDOMLY SELECT A BOOK
+            int r = random.nextInt(l1.getNumShelves());
+            int ra = random.nextInt(l1.getShelf(r).getNumBooks());
+            Book b = l1.getShelf(r).getBook(ra);
+            //for (Book b : results){
                 Library result1 = new Library(l1,l2,b); //constructor that makes a new library out of the 
                 Library result2 = new Library(l2,l1,b); //two libraries but swap their second halves at b
                 l1 = new Library(result1);
                 l2 = new Library(result2);
-            }
+            //}
             pop.add(l1); //might be an issue from earlier
             pop.add(l2);
         }   
-    }
+    
 
     public void mutate(Library lib){
         System.out.println("Attempt to Mutate - method");

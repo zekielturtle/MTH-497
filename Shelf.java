@@ -97,6 +97,9 @@ public class Shelf {
         size+=b.getSize();
     }
 
+    public Book getBook(int i){
+        return books.get(i);
+    }
     public void clear(){
         books.clear();
     }
