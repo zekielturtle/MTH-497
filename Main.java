@@ -4,7 +4,7 @@ import java.io.*;
 public class Main{
     public static void main(String[] args){
     //read in database
-    System.out.println("Update KW - 3-6 at 2:44 pm");
+    System.out.println("Update KW - 3-13 at ");
     ArrayList<Book> books = new ArrayList<>();
     ArrayList<String> calls = new ArrayList<>();
     try(Scanner file = new Scanner(new FileInputStream("sample.tsv"))){
@@ -43,7 +43,7 @@ public class Main{
 
     Collections.sort(books);
     List<Library> libs = new ArrayList<>(0);
-for(int i = 300; i<=300; i+=20){
+for(int i = 300; i<=500; i+=20){
     Library l = new Library(books, i); //create new library with shelf break point at i mm
     System.out.println("Library: " + i + ": " + l.getFitness());
     libs.add(l); //add to full library

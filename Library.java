@@ -48,12 +48,14 @@ public class Library implements Comparable<Library>{
 
         int l1idxSplit = other1.getShelfIdx(other1.getShelf(split));
         int l2idxSplit = other2.getShelfIdx(other2.getShelf(split)); //this feels wonky idk
-        int idxShelf1;
-        int idxShelf2;
-        for(int i = 0; other1.getShelf(l1idxSplit).getBook(i).compareTo(split)<=0; i++){
+        int idxShelf1 = 0;
+        int idxShelf2 = 0;
+        System.out.println("Made to " + l1idxSplit);
+        for(int i = 0; other1.getShelf(l1idxSplit-1).getBook(i).compareTo(split)<=0; i++){ //what does this do? 
+            System.out.println("Here now " + i);
             idxShelf1=i;
         }
-        for(int i = 0; other2.getShelf(l2idxSplit).getBook(i).compareTo(split)<=0; i++){
+        for(int i = 0; other2.getShelf(l2idxSplit-1).getBook(i).compareTo(split)<=0; i++){
             idxShelf2=i;
         }
         for(int i=0; i<l1idxSplit; i++){
@@ -280,7 +282,7 @@ public class Library implements Comparable<Library>{
         return fitness;
     }
     public int getNumShelves(){
-        return numShelves;
+        return shelves.size();
     }
 
     public ArrayList<Shelf> getShelves(){

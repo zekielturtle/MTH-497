@@ -1,20 +1,23 @@
 import java.util.*;
 
-public class Algo {
+public class algo {
     List<Library> pop;
     Random random = new Random();
 
-    public Algo(List<Library> list){
+    public algo(List<Library> list){
         pop = new ArrayList<Library>(list); //this might be an issue i hate copy constructors why did i do java
     }
 
+
     public void run(){
         //kill();
+        System.out.println("Running " + pop.size());
         int i = 0;
-        int j = 1;
-        while(j<pop.size()){
-            cross(pop.get(i),pop.get(j)); //cross the 1st and 2nd libs, then the 3rd and 4th, so on and so forth
-            i+=2; //tbh i might need to hardcode the size bc i think cross adds them back into pop
+        int j = 0;
+        while(j<pop.size()-1){
+            System.out.println("WHILE: Running");
+            cross(pop.get(j),pop.get(j+1)); //cross the 1st and 2nd libs, then the 3rd and 4th, so on and so forth
+            //i+=2; //tbh i might need to hardcode the size bc i think cross adds them back into pop
             j+=2;
         }
         for(Library l : pop){
@@ -52,9 +55,12 @@ public class Algo {
             //TODO: RANDOMLY SELECT A BOOK
             int r = random.nextInt(l1.getNumShelves());
             int ra = random.nextInt(l1.getShelf(r).getNumBooks());
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " + r + " >>> " + ra );
             Book b = l1.getShelf(r).getBook(ra);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> PICK BOOK " + r + " >>> " + ra );
             //for (Book b : results){
                 Library result1 = new Library(l1,l2,b); //constructor that makes a new library out of the 
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> LIB1 " + r + " >>> " + ra );
                 Library result2 = new Library(l2,l1,b); //two libraries but swap their second halves at b
                 l1 = new Library(result1);
                 l2 = new Library(result2);
@@ -114,13 +120,9 @@ public class Algo {
                 //for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()-3 ; j--){ //move 5 books
                            //why did this move half the books? 
                 int num = selectedShelf.getNumBooks();
-<<<<<<< HEAD
-                for(int j = 1; j<num/2; j++){ //split the selected shelf in half to a new shelf after it
-                    System.out.println("ALGO: On shelf " + idx + " with " + num + " books to start and pulling "+ (num/2 + 1) + "books");
-=======
+
                 for(int j = 0; j<=num/2; j++){ //split the selected shelf in half to a new shelf after it
                     System.out.println("On shelf " + idx + " with " + num + " books to start and pulling "+ (num/2 + 1) + "books");
->>>>>>> 077f772c6d4bd2500b06f8a9a3ab887f4459f58e
                     lib.goForward(idx);
                 }
             lib.removeEmpty();
