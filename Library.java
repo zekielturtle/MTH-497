@@ -45,21 +45,27 @@ public class Library implements Comparable<Library>{
             currShelf = other2.shelves.get(idx);
         }
         this.shelves.add(currShelf);*/
-        System.out.println("Book: " + split);
+        System.out.println("Book: " + split.getCallNumber());
         int l1idxSplit = other1.getShelfIdx(other1.getShelf(split));
         int l2idxSplit = other2.getShelfIdx(other2.getShelf(split)); //this feels wonky idk
         int idxShelf1 = 0;
         int idxShelf2 = 0;
-        System.out.println("  Made to " + l1idxSplit);
-        for(int i = 0; other1.getShelf(l1idxSplit-1).getBook(i).compareTo(split)<=0; i++){ //what does this do? 
-            System.out.println("    Here now " + i);
+        System.out.println("  Made to Cross" + l1idxSplit);
+        for(int i = 0; other1.getShelf(l1idxSplit).getSize() <= i  && other1.getShelf(l1idxSplit).getBook(i).compareTo(split)<=0; i++){ //what does this do? 
+            //System.out.println("    Here now  in l1 " + i);
             //System.out.println("  Comparator: " + other1.getShelf(l1idxSplit-1));
-            System.out.println("      Comparator: " + other1.getShelf(l1idxSplit-1).getBook(i));
-            System.out.println("      Comparator: " + other1.getShelf(l1idxSplit-1).getBook(i).compareTo(split));
+            //System.out.println("      Comparator: " + other1.getShelf(l1idxSplit).getBook(i).getCallNumber());
+            //System.out.println("      Comparator: " + other1.getShelf(l1idxSplit).getBook(i).compareTo(split));
 
             idxShelf1=i;
         }
-        for(int i = 0; other2.getShelf(l2idxSplit-1).getBook(i).compareTo(split)<=0; i++){
+        for(int i = 0; other2.getShelf(l2idxSplit).getSize() <= i && other2.getShelf(l2idxSplit).getBook(i).compareTo(split)<=0; i++){
+            //System.out.println("    Here now in l2 " + i);
+            //System.out.println("  Comparator: " + other1.getShelf(l1idxSplit-1));
+           // System.out.println("      Comparator: " + other2.getShelf(l2idxSplit).getBook(i).getCallNumber());
+            //System.out.println("      Comparator: " + other2.getShelf(l2idxSplit).getBook(i).compareTo(split));
+
+
             idxShelf2=i;
         }
         for(int i=0; i<l1idxSplit; i++){
@@ -78,6 +84,7 @@ public class Library implements Comparable<Library>{
         numShelves = shelves.size();
         calcFirsts();
         calcFitness();
+        System.out.println("         Crossed some stuff");
         //System.out.println(fits);
     }
 

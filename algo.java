@@ -55,12 +55,12 @@ public class algo {
             //TODO: RANDOMLY SELECT A BOOK
             int r = random.nextInt(l1.getNumShelves());
             int ra = random.nextInt(l1.getShelf(r).getNumBooks());
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " + r + " >>> " + ra );
+            //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " + r + " >>> " + ra );
             Book b = l1.getShelf(r).getBook(ra);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> PICK BOOK " + r + " >>> " + ra );
+            //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> PICK BOOK " + r + " >>> " + ra );
             //for (Book b : results){
                 Library result1 = new Library(l1,l2,b); //constructor that makes a new library out of the 
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> LIB1 " + r + " >>> " + ra );
+                //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> LIB1 " + r + " >>> " + ra );
                 Library result2 = new Library(l2,l1,b); //two libraries but swap their second halves at b
                 l1 = new Library(result1);
                 l2 = new Library(result2);
