@@ -46,11 +46,12 @@ public class Library implements Comparable<Library>{
         }
         this.shelves.add(currShelf);*/
         System.out.println("Book: " + split.getCallNumber());
+        //System.out.println(other1.shelves.get(0).getFirst().getCallNumber());
         int l1idxSplit = other1.getShelfIdx(other1.getShelf(split));
         int l2idxSplit = other2.getShelfIdx(other2.getShelf(split)); //this feels wonky idk
         int idxShelf1 = 0;
         int idxShelf2 = 0;
-        System.out.println("  Made to Cross" + l1idxSplit);
+        //System.out.println("  Made to Cross" + l1idxSplit);
         for(int i = 0; other1.getShelf(l1idxSplit).getSize() <= i  && other1.getShelf(l1idxSplit).getBook(i).compareTo(split)<=0; i++){ //what does this do? 
             //System.out.println("    Here now  in l1 " + i);
             //System.out.println("  Comparator: " + other1.getShelf(l1idxSplit-1));
@@ -81,6 +82,13 @@ public class Library implements Comparable<Library>{
         for(int i=l2idxSplit; i<other2.numShelves; i++){ //switch to l2 and add shelves until the end
             addShelf(new Shelf(other2.getShelf(i)));
         }
+
+        System.out.println("........................." + shelves.get(0).getFirst().getCallNumber());
+        if( !shelves.get(0).getFirst().getCallNumber().equals( other1.shelves.get(0).getFirst().getCallNumber()  ) ) {
+            System.out.print("WOUEIUDOIUFOUOSIUFOIU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            System.out.print(shelves.get(-1).getFirst().getCallNumber());
+        }
+
         numShelves = shelves.size();
         calcFirsts();
         calcFitness();
@@ -189,6 +197,8 @@ public class Library implements Comparable<Library>{
     public Shelf getShelf(Book b){
         for(int i=0; i<shelves.size(); i++){
             if(shelves.get(i).getFirst().compareTo(b) > 0){
+                System.out.println(" Looking for: " + b.getCallNumber());
+                System.out.println(" FOUND BOOK: " + shelves.get(i).getFirst().getCallNumber());
                 return shelves.get(i-1);
             }
         }
