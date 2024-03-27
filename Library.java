@@ -52,22 +52,23 @@ public class Library implements Comparable<Library>{
         int idxShelf1 = 0;
         int idxShelf2 = 0;
         //System.out.println("  Made to Cross" + l1idxSplit);
-        for(int i = 0; other1.getShelf(l1idxSplit).getSize() <= i  && other1.getShelf(l1idxSplit).getBook(i).compareTo(split)<=0; i++){ //what does this do? 
+        for(int i = 0; i < other1.getShelf(l1idxSplit).getNumBooks(); i++){ //what does this do? 
             //System.out.println("    Here now  in l1 " + i);
             //System.out.println("  Comparator: " + other1.getShelf(l1idxSplit-1));
             //System.out.println("      Comparator: " + other1.getShelf(l1idxSplit).getBook(i).getCallNumber());
             //System.out.println("      Comparator: " + other1.getShelf(l1idxSplit).getBook(i).compareTo(split));
-
-            idxShelf1=i;
+            if(other1.getShelf(l1idxSplit).getBook(i).compareTo(split) == 0){
+                idxShelf1=i;
+            }
         }
-        for(int i = 0; other2.getShelf(l2idxSplit).getSize() <= i && other2.getShelf(l2idxSplit).getBook(i).compareTo(split)<=0; i++){
+        for(int i = 0; i<other2.getShelf(l2idxSplit).getNumBooks(); i++){
             //System.out.println("    Here now in l2 " + i);
             //System.out.println("  Comparator: " + other1.getShelf(l1idxSplit-1));
            // System.out.println("      Comparator: " + other2.getShelf(l2idxSplit).getBook(i).getCallNumber());
             //System.out.println("      Comparator: " + other2.getShelf(l2idxSplit).getBook(i).compareTo(split));
-
-
-            idxShelf2=i;
+            if(other2.getShelf(l2idxSplit).getBook(i).compareTo(split) == 0){
+                idxShelf2=i;
+            }
         }
         for(int i=0; i<l1idxSplit; i++){
             addShelf(new Shelf(other1.getShelf(i))); //add shelves from l1 until the split
@@ -79,14 +80,15 @@ public class Library implements Comparable<Library>{
         for(int i = idxShelf2; i<other2.getShelf(l2idxSplit).getNumBooks(); i++){
             s.addLast(new Book(other2.getShelf(l2idxSplit).getBook(i)));
         }
-        for(int i=l2idxSplit; i<other2.numShelves; i++){ //switch to l2 and add shelves until the end
+        addShelf(s);
+        for(int i=l2idxSplit+1; i<other2.numShelves; i++){ //switch to l2 and add shelves until the end
             addShelf(new Shelf(other2.getShelf(i)));
         }
 
         System.out.println("........................." + shelves.get(0).getFirst().getCallNumber());
         if( !shelves.get(0).getFirst().getCallNumber().equals( other1.shelves.get(0).getFirst().getCallNumber()  ) ) {
             System.out.print("WOUEIUDOIUFOUOSIUFOIU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            System.out.print(shelves.get(-1).getFirst().getCallNumber());
+            System.out.print(shelves.get(0).getFirst().getCallNumber());
         }
 
         numShelves = shelves.size();
