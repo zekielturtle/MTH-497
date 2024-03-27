@@ -14,7 +14,7 @@ public class algo {
         System.out.println("Running " + pop.size());
         //int i = 0;
         int j = 0;
-        while(j<pop.size()-1){
+        while(j<9){
             System.out.println("WHILE: Running");
             cross(pop.get(j),pop.get(j+1)); //cross the 1st and 2nd libs, then the 3rd and 4th, so on and so forth
             //i+=2; //tbh i might need to hardcode the size bc i think cross adds them back into pop
@@ -32,6 +32,7 @@ public class algo {
         }
         Collections.sort(pop); //sort by fitness
         System.out.println("Top Fitness: " + pop.get(0).getFitness());
+        kill();
         for(Library l : pop){
             System.out.println(l.getFitness()); //just to check the fits
         }
