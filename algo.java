@@ -12,7 +12,7 @@ public class algo {
     public void run(){
         //kill();
         System.out.println("Running " + pop.size());
-        int i = 0;
+        //int i = 0;
         int j = 0;
         while(j<pop.size()-1){
             System.out.println("WHILE: Running");
@@ -27,7 +27,8 @@ public class algo {
                 System.out.println("Attempt to mutate");
                 mutate(l);
 
-            } 
+            }
+            smallMutate(l); 
         }
         Collections.sort(pop); //sort by fitness
         System.out.println("Top Fitness: " + pop.get(0).getFitness());
@@ -68,7 +69,20 @@ public class algo {
             pop.add(l1); //might be an issue from earlier
             pop.add(l2);
         }   
-    
+    public void smallMutate(Library lib){
+        if(random.nextDouble()<0.25){
+            for(int i=0; i<lib.getNumShelves()-1; i++){
+                if(random.nextDouble()<0.05){
+                    lib.goForward(i);
+                }
+            }
+            for(int i=1; i<lib.getNumShelves(); i++){
+                if(random.nextDouble()<0.05){
+                    lib.goBack(i);
+                }
+            }
+        }
+    }
 
     public void mutate(Library lib){
         System.out.println("Attempt to Mutate - method");
