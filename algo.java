@@ -19,6 +19,9 @@ public class algo {
             cross(pop.get(j),pop.get(j+1)); //cross the 1st and 2nd libs, then the 3rd and 4th, so on and so forth
             //i+=2; //tbh i might need to hardcode the size bc i think cross adds them back into pop
             j+=2;
+            if (j % 100 == 0 ) {
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + j + ">>>>>>>>>>>>>>>>>>");
+            }
         }
         for(Library l : pop){
             double rand = random.nextDouble();

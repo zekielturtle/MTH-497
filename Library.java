@@ -86,7 +86,7 @@ public class Library implements Comparable<Library>{
         }
 
         System.out.println("........................." + shelves.get(0).getFirst().getCallNumber());
-        if( !shelves.get(0).getFirst().getCallNumber().equals( other1.shelves.get(0).getFirst().getCallNumber()  ) ) {
+        if( !shelves.get(0).getFirst().getCallNumber().equals( other2.shelves.get(0).getFirst().getCallNumber()  ) ) {
             System.out.print("WOUEIUDOIUFOUOSIUFOIU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             System.out.print(shelves.get(0).getFirst().getCallNumber());
         }
