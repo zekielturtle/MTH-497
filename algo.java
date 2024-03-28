@@ -14,25 +14,24 @@ public class algo {
         System.out.println("Running " + pop.size());
         //int i = 0;
         int j = 0;
-        while(j<pop.size()-1){
+        while(j< 2){
             System.out.println("WHILE: Running");
+           
             cross(pop.get(j),pop.get(j+1)); //cross the 1st and 2nd libs, then the 3rd and 4th, so on and so forth
             //i+=2; //tbh i might need to hardcode the size bc i think cross adds them back into pop
             j+=2;
-            if (j % 100 == 0 ) {
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + j + ">>>>>>>>>>>>>>>>>>");
-            }
+           
         }
-        for(Library l : pop){
-            double rand = random.nextDouble();
-            System.out.println("Algo: Works Random number " + Double.toString(rand));
-            if(rand<0.85 && rand>0.0){ 
-                System.out.println("Attempt to mutate");
-                mutate(l);
+ //       for(Library l : pop){
+   //         double rand = random.nextDouble();
+     //       System.out.println("Algo: Works Random number " + Double.toString(rand));
+       //     if(rand<0.85 && rand>0.0){ 
+         //       System.out.println("Attempt to mutate");
+           //     mutate(l);
 
-            }
-            smallMutate(l); 
-        }
+            //}
+            //smallMutate(l); 
+        //}
         Collections.sort(pop); //sort by fitness
         System.out.println("Top Fitness: " + pop.get(0).getFitness());
         kill();
@@ -60,6 +59,8 @@ public class algo {
             //TODO: RANDOMLY SELECT A BOOK
             int r = random.nextInt(l1.getNumShelves());
             int ra = random.nextInt(l1.getShelf(r).getNumBooks());
+            //r = 0;
+           // ra = l1.getShelf(r).getNumBooks()-1;
             //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " + r + " >>> " + ra );
             Book b = l1.getShelf(r).getBook(ra);
             //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> PICK BOOK " + r + " >>> " + ra );
@@ -67,11 +68,18 @@ public class algo {
                 Library result1 = new Library(l1,l2,b); //constructor that makes a new library out of the 
                 //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> LIB1 " + r + " >>> " + ra );
                 Library result2 = new Library(l2,l1,b); //two libraries but swap their second halves at b
-                l1 = new Library(result1);
-                l2 = new Library(result2);
+               // l1 = new Library(result1);
+            // l2 = new Library(result2);
             //}
-            pop.add(l1); //might be an issue from earlier
-            pop.add(l2);
+
+            l1.printLibrary();
+            l2.printLibrary();
+            result1.printLibrary();
+            result2.printLibrary();
+
+
+            pop.add(result1); //might be an issue from earlier
+            pop.add(result2);
         }   
     public void smallMutate(Library lib){
         if(random.nextDouble()<0.25){

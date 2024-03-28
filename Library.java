@@ -382,4 +382,17 @@ public class Library implements Comparable<Library>{
     public int compareTo(Library o){
         return this.fitness - o.fitness;
     }
+
+
+    public void printLibrary() {
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>Library  Start >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        int total = 0;
+        for (Shelf s : shelves){
+           System.out.println( s.getFirst().getCallNumber() + " " + (s.getNumBooks() - 2) + " " + s.getLast().getCallNumber());
+           total += s.getNumBooks() ;
+        }
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>Library  End: " +  total +" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+       
+    }
+
 }
