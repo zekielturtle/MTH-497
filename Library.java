@@ -45,6 +45,8 @@ public class Library implements Comparable<Library>{
             currShelf = other2.shelves.get(idx);
         }
         this.shelves.add(currShelf);*/
+        other1.removeEmpty();
+        other2.removeEmpty();
         System.out.println("Book: " + split.getCallNumber());
         //System.out.println(other1.shelves.get(0).getFirst().getCallNumber());
         int l1idxSplit = other1.getShelfIdx(other1.getShelf(split));
@@ -85,11 +87,11 @@ public class Library implements Comparable<Library>{
             addShelf(new Shelf(other2.getShelf(i)));
         }
 
-        System.out.println("........................." + shelves.get(0).getFirst().getCallNumber());
-        if( !shelves.get(0).getFirst().getCallNumber().equals( other2.shelves.get(0).getFirst().getCallNumber()  ) ) {
-            System.out.print("WOUEIUDOIUFOUOSIUFOIU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            System.out.print(shelves.get(0).getFirst().getCallNumber());
-        }
+        //System.out.println("........................." + shelves.get(0).getFirst().getCallNumber());
+        //if( !shelves.get(0).getFirst().getCallNumber().equals( other2.shelves.get(0).getFirst().getCallNumber()  ) ) {
+            //System.out.print("WOUEIUDOIUFOUOSIUFOIU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            //System.out.print(shelves.get(0).getFirst().getCallNumber());
+        //}
 
         numShelves = shelves.size();
         calcFirsts();
@@ -199,8 +201,8 @@ public class Library implements Comparable<Library>{
     public Shelf getShelf(Book b){
         for(int i=0; i<shelves.size(); i++){
             if(shelves.get(i).getFirst().compareTo(b) > 0){
-                System.out.println(" Looking for: " + b.getCallNumber());
-                System.out.println(" FOUND BOOK: " + shelves.get(i).getFirst().getCallNumber());
+                //System.out.println(" Looking for: " + b.getCallNumber());
+                //System.out.println(" FOUND BOOK: " + shelves.get(i).getFirst().getCallNumber());
                 return shelves.get(i-1);
             }
         }
@@ -333,6 +335,9 @@ public class Library implements Comparable<Library>{
             if(shelves.get(i).getLast().sameCol(shelves.get(i+1).getFirst()) & !shelves.get(i).getLast().sameCol(shelves.get(i).getFirst())){
                 currScore+=5;
             }
+            if(shelves.get(0).getFirst().getCallNumber().compareTo("B819 .M593") != 0){
+                currScore+=100;
+            }
             fits.add((int)currScore);
             shelves.get(i).setFitness(currScore);
             //System.out.println("Size: " + shelves.get(i).getSize());
@@ -371,6 +376,14 @@ public class Library implements Comparable<Library>{
         numShelves++;
         shelves.add(s);
         firsts.add(s.getFirst());
+    }
+
+    public void print(){
+        for(int i=0; i<numShelves; i++){
+            System.out.print("Shelf " + i + ": " + shelves.get(i).getFirst().getCallNumber());
+            System.out.print(" to " + shelves.get(i).getLast().getCallNumber() +'\n');
+            System.out.println(shelves.get(i).getSize());
+        }
     }
 
     @Override

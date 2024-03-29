@@ -52,7 +52,7 @@ for(int i = 300; i<=500; i+=20){
 algo algo = new algo(libs); //new genetic algorithm on the set of libraries
 algo.run();
 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Press 'x' to quit:");
+        System.out.println("Press 'x' to quit or 'p' to print top library:");
 
         boolean flag = true;
         while (flag) {
@@ -62,11 +62,14 @@ Scanner myObj = new Scanner(System.in);  // Create a Scanner object
             if (cont.equalsIgnoreCase("x")) {
                 System.out.println("Exiting the program. Goodbye!");
                 flag = false;  // Set flag to false to exit the loop
+            } else if (cont.equalsIgnoreCase("p")) {
+                algo.getTop().print();
+                System.out.println("Press 'x' to quit or 'p' to print top library:");
             } else {
                 // Perform other actions based on user input
                 algo.kill();
                 algo.run();
-                System.out.println("Press 'x' to quit:");
+                System.out.println("Press 'x' to quit or 'p' to print top library:");
             }
         }
     myObj.close();

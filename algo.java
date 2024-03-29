@@ -8,25 +8,26 @@ public class algo {
         pop = new ArrayList<Library>(list); //this might be an issue i hate copy constructors why did i do java
     }
 
+    public Library getTop(){
+        Collections.sort(pop);
+        return pop.get(0);
+    }
 
     public void run(){
         //kill();
         System.out.println("Running " + pop.size());
         //int i = 0;
         int j = 0;
-        while(j<pop.size()-1){
+        while(j<9){
             System.out.println("WHILE: Running");
             cross(pop.get(j),pop.get(j+1)); //cross the 1st and 2nd libs, then the 3rd and 4th, so on and so forth
             //i+=2; //tbh i might need to hardcode the size bc i think cross adds them back into pop
             j+=2;
-            if (j % 100 == 0 ) {
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + j + ">>>>>>>>>>>>>>>>>>");
-            }
         }
         for(Library l : pop){
             double rand = random.nextDouble();
             System.out.println("Algo: Works Random number " + Double.toString(rand));
-            if(rand<0.85 && rand>0.0){ 
+            if(rand<0.05 && rand>0.0){ 
                 System.out.println("Attempt to mutate");
                 mutate(l);
 
@@ -110,34 +111,32 @@ public class algo {
         double randomValue = rand * totalFitnessScore; //a random value rand% of the way through the shelves
         //System.out.println("randomValue: " + randomValue);
         // Perform weighted random selection
-        Shelf selectedShelf = new Shelf();
         int cumulativeFitness = 0;
         int i = 0;
         for (Shelf shelf : lib.getShelves()) {
-            //System.out.println("i: " + i);
-            i++;
+            System.out.println("i: " + i);
             //System.out.println("Shelf fit: " + shelf.getFitness());
-            cumulativeFitness += shelf.getFitness();
+            cumulativeFitness += lib.getFits().get(i);
             //System.out.println("Cumulative: " + cumulativeFitness);
             if (randomValue < cumulativeFitness) {
-             
-               selectedShelf = shelf;
+                System.out.println("break");
                 break;
             }
+            i++;
         }
         //selectedShelf = lib.getShelf(0); // Will pick the first shelf always
         // Now, 'selectedShelf' contains the shelf selected based on its fitness score
         //System.out.println("Selected Shelf: " + selectedShelf);
-        System.out.println("number of books on shelf before: " + selectedShelf.getNumBooks());
-            int idx = lib.getShelfIdx(selectedShelf);
+        System.out.println("number of books on shelf before: " + lib.getShelf(i).getNumBooks());
+            int idx = i;
             Shelf s = lib.shelves.get(idx);
             System.out.println("Algo: books on shelf " + s.getNumBooks());
             
             lib.insertShelfAfter(idx);
-            if(selectedShelf.getNumBooks()>1){
+            if(lib.getShelf(i).getNumBooks()>1){
                 //for(int j = selectedShelf.getNumBooks()-1; j>selectedShelf.getNumBooks()-3 ; j--){ //move 5 books
                            //why did this move half the books? 
-                int num = selectedShelf.getNumBooks();
+                int num = lib.getShelf(i).getNumBooks();
 
                 for(int j = 0; j<=num/2; j++){ //split the selected shelf in half to a new shelf after it
                     System.out.println("On shelf " + idx + " with " + num + " books to start and pulling "+ (num/2 + 1) + "books");
@@ -147,7 +146,7 @@ public class algo {
             lib.reCalcFirsts();
             lib.reCalcFitness();
             }
-            System.out.println("number of books on shelf after: " + selectedShelf.getNumBooks());
+            System.out.println("number of books on shelf after: " + lib.getShelf(i).getNumBooks());
             System.out.println("number of books on shelf 2 after: " + lib.getShelf(idx+1).getNumBooks());
         /*} else{ 
             System.out.println("Problem in InsertShelf");
