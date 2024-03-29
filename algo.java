@@ -32,14 +32,14 @@ public class algo {
                 System.out.println("Attempt to mutate");
                 mutate(l);
 
-            //}
-            //smallMutate(l); 
-        //}
+            }
+            smallMutate(l); 
+        }
         Collections.sort(pop); //sort by fitness
         System.out.println("Top Fitness: " + pop.get(0).getFitness());
         kill();
-        for(Library l : pop){
-            System.out.println(l.getFitness()); //just to check the fits
+        for(Library lib : pop){
+            System.out.println(lib.getFitness()); //just to check the fits
         }
     }
 
